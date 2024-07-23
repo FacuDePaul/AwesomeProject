@@ -1,16 +1,12 @@
-import api from '../api';
+import axios from '../Api';
 
-const loginWS = {
-  login: async function (mail, password, deviceToken) {
-    return await api.post('/login', {
-      mail,
-      password,
-      token: deviceToken, //puedo especificar la key
-    });
+const meli = {
+  search: async function (search) {
+    return await axios.get(`/sites/MLA/search?q=${search}#json`);
   },
-  deleteNode: async function (nodeId) {
-    return await api.delete(`/nodes/${nodeId}`);
+  item: async function (itemId) {
+    return await axios.get(`/items/${itemId}`);
   },
 };
 
-export default loginWS;
+export default meli;

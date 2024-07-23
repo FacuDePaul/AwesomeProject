@@ -5,9 +5,11 @@
  * @format
  */
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import type {PropsWithChildren} from 'react';
 import {
+  Button,
+  FlatList,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -24,10 +26,16 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import axios from 'axios';
 
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
+
+interface IMeliItem {
+  id: String;
+  title: String;
+}
 
 function Section({children, title}: SectionProps): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -57,10 +65,32 @@ function Section({children, title}: SectionProps): React.JSX.Element {
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
+  const [list, setList] = React.useState([]);
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+
+  const getMeli = async (query: String) => {
+    return await axios.get(
+      `https://api.mercadolibre.com/sites/MLA/search?q=${query}&limit=3#json`,
+    );
+  };
+
+  const handleButtonPress = () => {
+    getMeli('iphone')
+      .then(res => {
+        console.log(res.data.results);
+        setList(res.data.results);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  };
+
+  useEffect(() => {
+    console;
+  }, [list]);
 
   return (
     <SafeAreaView style={backgroundStyle}>
@@ -76,22 +106,18 @@ function App(): React.JSX.Element {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+          <Button title="Simple Button" onPress={handleButtonPress} />
         </View>
       </ScrollView>
+      <FlatList
+        data={list}
+        renderItem={({item}) => (
+          <Section title={item.title}>
+            <Text>id: {item.id}</Text>
+          </Section>
+        )}
+        keyExtractor={item => item.id.toString()}
+      />
     </SafeAreaView>
   );
 }
