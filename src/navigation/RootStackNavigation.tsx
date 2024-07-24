@@ -1,8 +1,8 @@
 // Import necessary libraries
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import HomeScreen from './HomeScreen';
-import ProductScreen from './ProductScreen';
+import HomeScreen from './home/HomeScreen';
+import ProductScreen from './product/ProductScreen';
 
 export type RootStackParams = {
   Home: undefined;

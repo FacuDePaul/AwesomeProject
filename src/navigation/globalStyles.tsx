@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-export const styles = StyleSheet.create({
+export const globalStyles = StyleSheet.create({
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24,
@@ -17,6 +17,10 @@ export const styles = StyleSheet.create({
   highlight: {
     fontWeight: '700',
   },
-  homeScreenView: {flex: 1, alignItems: 'center', justifyContent: 'center'},
-  ProductScreenView: {flex: 1, alignItems: 'center', justifyContent: 'center'},
+  separator: {
+    height: 1,
+    backgroundColor: '#e0e0e0',
+    marginTop: 16,
+    marginBottom: 16,
+  },
 });
