@@ -2,11 +2,11 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from './home/HomeScreen';
-import ProductScreen from './product/ProductScreen';
+import DetailScreen from './detail/DetailScreen';
 
 export type RootStackParams = {
   Home: undefined;
-  Product: {itemId: string};
+  Detail: {itemId: string};
 };
 
 // Create a stack navigator
@@ -16,7 +16,7 @@ function RootStackNavigation() {
   return (
     <Stack.Navigator initialRouteName="Home">
       <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Product" component={ProductScreen} />
+      <Stack.Screen name="Detail" component={DetailScreen} />
     </Stack.Navigator>
   );
 }

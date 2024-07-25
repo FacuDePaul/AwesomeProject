@@ -2,18 +2,18 @@ import React, {useEffect, useState} from 'react';
 import {View, Text, Image} from 'react-native';
 import {RootStackParams} from '../RootStackNavigation';
 import {StackScreenProps} from '@react-navigation/stack';
-import {ProductFetchData, ProductQueryResponse} from '../../api';
+import {DetailFetchData, DetailQueryResponse} from '../../api';
 import {styles} from './styles';
-type ProductScreenProps = StackScreenProps<RootStackParams, 'Product'>;
+type DetailScreenProps = StackScreenProps<RootStackParams, 'Detail'>;
 
-function ProductScreen({route}: ProductScreenProps) {
+function DetailScreen({route}: DetailScreenProps) {
   const {itemId} = route.params;
-  const [data, setData] = useState<ProductQueryResponse | null>(null);
+  const [data, setData] = useState<DetailQueryResponse | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await ProductFetchData(itemId);
+        const response = await DetailFetchData(itemId);
         setData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -38,4 +38,4 @@ function ProductScreen({route}: ProductScreenProps) {
   );
 }
 
-export default ProductScreen;
+export default DetailScreen;

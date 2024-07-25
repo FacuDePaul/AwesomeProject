@@ -7,7 +7,7 @@ export type HomeQueryResponse = {
     offset: number;
     limit: number;
   };
-  results: Array<ProductQueryResponse>;
+  results: Array<DetailQueryResponse>;
 };
 
 export const HomeFetchData = async (
@@ -19,14 +19,14 @@ export const HomeFetchData = async (
     `https://api.mercadolibre.com/sites/MLA/search?q=${query}&limit=${limit}&offset=${offset}#json`,
   );
 
-export type ProductQueryResponse = {
+export type DetailQueryResponse = {
   id: string;
   title: string;
   thumbnail: string;
   price: number;
 };
 
-export const ProductFetchData = async (itemId: String) =>
-  await axios.get<ProductQueryResponse>(
+export const DetailFetchData = async (itemId: String) =>
+  await axios.get<DetailQueryResponse>(
     `https://api.mercadolibre.com/items/${itemId}`,
   );
