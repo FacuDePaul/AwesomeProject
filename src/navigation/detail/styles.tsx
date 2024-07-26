@@ -3,30 +3,27 @@ import {StyleSheet} from 'react-native';
 export const styles = StyleSheet.create({
   screenView: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
+    padding: 16,
+    backgroundColor: '#fff',
   },
   thumbnail: {
-    width: 100,
-    height: 100,
-    borderRadius: 5,
-    alignSelf: 'center',
-    marginBottom: 20,
+    width: '100%',
+    height: 150, // Adjust the height as needed
+    resizeMode: 'contain', // Adjust the resize mode as needed
   },
   thumbnailPlaceholder: {
-    width: 100,
-    height: 100,
-    borderRadius: 5,
-    alignSelf: 'center',
-    marginBottom: 20,
+    width: '100%',
+    height: 150, // Match the height of the thumbnail
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f0f0f0', // Placeholder background color
+    backgroundColor: '#f0f0f0',
   },
   titleText: {
-    color: '#333333',
-    textAlign: 'center',
-    fontSize: 18,
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginVertical: 8,
+  },
+  darkGrayText: {
+    color: '#333', // Dark gray color
   },
 });

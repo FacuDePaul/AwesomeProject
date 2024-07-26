@@ -4,6 +4,7 @@ import {RootStackParams} from '../RootStackNavigation';
 import {StackScreenProps} from '@react-navigation/stack';
 import {DetailFetchData, DetailQueryResponse} from '../../api';
 import {styles} from './styles';
+
 type DetailScreenProps = StackScreenProps<RootStackParams, 'Detail'>;
 
 function DetailScreen({route}: DetailScreenProps) {
@@ -27,13 +28,12 @@ function DetailScreen({route}: DetailScreenProps) {
       {data?.thumbnail ? (
         <Image source={{uri: data.thumbnail}} style={styles.thumbnail} />
       ) : (
-        // Optionally, render a default image or nothing
         <View style={styles.thumbnailPlaceholder}>
-          <Text>No Image Available</Text>
+          <Text style={styles.darkGrayText}>No Image Available</Text>
         </View>
       )}
-      <Text style={styles.titleText}>{data?.title}</Text>
-      <Text>{`precio: $${data?.price}`}</Text>
+      <Text style={[styles.titleText, styles.darkGrayText]}>{data?.title}</Text>
+      <Text style={styles.darkGrayText}>{`precio: $${data?.price}`}</Text>
     </View>
   );
 }
